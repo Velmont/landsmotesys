@@ -2,13 +2,16 @@
 {% load markup %}
 
 {% block content %}
-<pre>{{ patch.patch }}</pre>
+<h2>Framlegg {{patch.pk}}, til &laquo;{{ doc.title }}&raquo;</h2>
 
-<div class="before">{{ doc.text|markdown }}</div>
+<pre class="patch">{{ patch.patch }}</pre>
+
+<div class="diff_view">
+{{ d|safe }}
+</div>
 
 <div class="after">{{ newdoc|markdown }}</div>
 
-{{ d|safe }}
 
 <a href="/framlegg/doc/{{ doc.pk }}/edit/">Edit document</a>
 <a href="/framlegg/">Attende</a>
