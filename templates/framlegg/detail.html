@@ -1,0 +1,12 @@
+{% load markup %}
+
+{{ doc.text|markdown }}
+
+<ul>
+{% for p in doc.patch_set.all %}
+    <li><a href="/framlegg/doc/{{doc.pk}}/patch/{{p.pk}}/">Patch {{ p.pk }}</a>, by {{ p.written_by }}
+{% endfor %}
+</ul>
+
+<a href="/framlegg/doc/{{ doc.pk }}/edit/">Edit document</a>
+<a href="/framlegg/">Attende</a>

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load markup %}
+
+{% block content %}
+<pre>{{ patch.patch }}</pre>
+
+<div class="before">{{ doc.text|markdown }}</div>
+
+<div class="after">{{ newdoc|markdown }}</div>
+
+{{ d|safe }}
+
+<a href="/framlegg/doc/{{ doc.pk }}/edit/">Edit document</a>
+<a href="/framlegg/">Attende</a>
+{% endblock %}

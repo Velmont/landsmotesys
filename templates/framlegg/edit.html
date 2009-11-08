@@ -1,0 +1,13 @@
+<h1>{{ doc.title }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="/framlegg/doc/{{ doc.pk }}/patch_make/" method="post">
+{#% csrf_token %#}
+    <label for="text">Text<br>
+        <textarea id="text" name="text" cols="90" rows="10">{{ doc.text }}</textarea>
+    </label>
+
+<input type="submit" value="Edit">
+</form>
+
