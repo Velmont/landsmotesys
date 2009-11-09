@@ -1,0 +1,39 @@
+body { font-family: sans-serif; color: #333; }
+a { color: #c22; text-decoration: none; }
+a:hover { color: #f00; }
+
+#kontainer { width: 800px; position: relative; margin: 0 auto; }
+
+h1 { font-size: 40pt; margin: 0; padding: 0; color: #444; }
+h1 a, h1 a:hover, a img { color: #444; border-style: none; }
+h1 em { font-style: normal; letter-spacing: 1px; margin-bottom: 1em; display: block; position: absolute; top: 50px; left: 170px; }
+
+#ekstra { position: absolute; top: 60px; right: 0; height: 50px; width: 200px; border-left: 1px solid #aaa; padding-left: 20px; }
+
+#nav { position: absolute; top: 110px; left: 150px; font-size: 10pt; }
+
+form { display: block; position: absolute; right: -4px; margin-top: -24px; width: 400px; background-color: #cec; padding: 10px 20px 10px 10px; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; color: #000; font-size: 8pt; }
+form a, form a:hover { color: #000; }
+label { color: white; display: block; float: left; }
+input, textarea { background-color: #fff; color: #000; border: 1px solid #ccc; clear: left;}
+input[type="submit"] { float: right; }
+
+#readme { font-family: monospace; width: 560px; }
+
+.handlingar { font-size: 10pt; margin: 0; padding: 0; position: absolute; right: 0; margin-top: -20px; }
+.handlingar li { margin: 0 0 0 10px; display: block; float: left; }
+
+tr.odd:hover, tr:hover { background-color: #fee; }
+tr { background-color: #f9f5f5; }
+table img { padding: 0 5px 0 0; }
+table { border-top: 1px solid #aaa; border-bottom: 1px solid #aaa; padding: 5px 0 5px 0; width: 800px; }
+td { padding: 0 5px 0 5px; }
+td + td { text-align: right; }
+
+table.nye { background-color: #eee; color: #ccc; border-color: #ccc; }
+table.nye caption { margin-top: 2em; }
+table.nye tr { background-color: #fff; }
+table.nye.admin { color: #333; background-color: #edd; }
+
+#footer { font-size: 8pt; color: #aaa; text-align: right; }
+#footer a { color: #a77 }
