@@ -1,7 +1,10 @@
-<html>
-<h1>Docs</h1>
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Dokument</h2>
 <ul>
 {% for doc in docs %}
     <li><a href="/framlegg/doc/{{ doc.pk }}/">{{ doc.title }}</a>
 {% endfor %}
 </ul>
+{% endblock %}

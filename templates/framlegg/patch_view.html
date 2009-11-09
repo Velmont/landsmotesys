@@ -4,11 +4,9 @@
 {% block content %}
 <h2>Framlegg {{patch.pk}}, til &laquo;{{ doc.title }}&raquo;</h2>
 
-<pre class="patch">{{ patch.patch }}</pre>
+<p class='reason'>{{ patch.reason }}</p>
 
-<div class="diff_view">
-{{ d|safe }}
-</div>
+{{ diff|safe }}
 
 <div class="after">{{ newdoc|markdown }}</div>
 

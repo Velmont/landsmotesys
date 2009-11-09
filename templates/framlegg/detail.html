@@ -1,4 +1,7 @@
+{% extends "base.html" %}
 {% load markup %}
+
+{% block content %}
 
 {{ doc.text|markdown }}
 
@@ -10,3 +13,5 @@
 
 <a href="/framlegg/doc/{{ doc.pk }}/edit/">Edit document</a>
 <a href="/framlegg/">Attende</a>
+
+{% endblock %}
