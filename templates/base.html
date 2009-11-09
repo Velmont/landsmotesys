@@ -1,19 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
 <html>
-<head>
-    <style type="text/css" rel="stylesheet">
+  <head>
+    <title>Registersøk Nei til EU</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="shortcut icon" href="/web/bilete/neitileu-logo-16.png">
+
+    <style type="text/css" media="screen">
+@import "/web/style.css";
+@import "style.css";
 table, td, tr, colgroup { border: 0; }
 table td { padding: 0 4px; }
 .diff_header { font-size: 0.8em; color: #666; text-align: right; }
 
-.diff_add { background-color: #afa; }
-.diff_sub { background-color: #faa; }
+.highlight pre { white-space: pre-wrap; }
+.diff_add, ins, .gi { background-color: #afa; }
+.diff_sub, del, .gd { background-color: #faa; }
 
 .after { border: 1px solid #77a; background-color: #e0e0f5; width: 80%; margin: 20px auto; padding: 10px; }
     </style>
-</head>
-<body>
-<h1>Landsmøtesystem</h1>
 
-{% block content %}{% endblock %}
+    <script type="text/javascript">
+    </script>
+
+  </head>
+
+  <body onload="document.getElementById('q').focus()">
+<div id="kontainer">
+  <h1><a href="/"><img src="/web/bilete/neitileu-logo-150.png" alt="Nei til EU"></a> <em>Landsmøte</em></h1>
+
+<div id="ekstra">
+</div>
+
+<div id="nav">
+<a href="/framlegg/">Dokument</a> |
+ <a href="?s=many">Fleire</a>
+
+</div>
+
+<div id="content">
+	{% block content %}{% endblock %}
+</div>
+
+<div id="footer"><p>NB: Meir informasjon når du held musi yver dei forskjellege kolonnene &middot; Registersøkesystem skrive av <a href="http://velmont.no">Odin Hørthe</a>, for <a href="http://neitileu.no">Nei til EU</a></p></div>
+
+</div>
+
 </body>
 </html>
