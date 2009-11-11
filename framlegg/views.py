@@ -26,15 +26,23 @@ def patch_make(request, doc_id):
     doc = get_object_or_404(Document, pk=doc_id)
     new_text = request.POST['text']
 
-    import difflib
-    diff = difflib.unified_diff(doc.text.splitlines(1),
-                        new_text.splitlines(1),
-                        fromfile="old",
-                        tofile="new")
+    from diff_match_patch import diff_match_patch
+    dmp = diff_match_patch()
 
-    diff_string = ''.join(list(diff))
+    dmp_diff = dmp.diff_main(doc.text, new_text)
+    dmp.diff_cleanupSemantic(dmp_diff)
 
-    p = Patch(text=diff_string, document=doc, written_by='test', created_by='odin', reason=request.POST['reason'])
+    dmp_patch = dmp.patch_make(doc.text, dmp_diff)
+    dmp_patch = dmp.patch_toText(dmp_patch)
+    print dmp_patch
+#    import difflib
+#    diff = difflib.unified_diff(doc.text.splitlines(1),
+#                        new_text.splitlines(1),
+#                        fromfile="old",
+#                        tofile="new")
+
+#    diff_string = ''.join(list(diff))
+    p = Patch(text=dmp_patch, document=doc, written_by='test', created_by='odin', reason=request.POST['reason'])
     p.save()
 
     return HttpResponseRedirect(
@@ -45,14 +53,15 @@ def patch_view(request, doc_id, patch_id):
     doc = get_object_or_404(Document, pk=doc_id)
     p = get_object_or_404(Patch, pk=patch_id)
 
-    from framlegg.patch import patch, show_diff
+    from framlegg.patch import show_diff
+    from diff_match_patch import diff_match_patch
     import difflib
-    try:
-        newdoc = patch(p.text, doc.text)
-        d = difflib.SequenceMatcher(None, doc.text, newdoc)
-        hilightdoc = show_diff(d)
-    except Exception:
-        hilightdoc = ""
+    dmp = diff_match_patch()
+    dmp_patches = dmp.patch_fromText(p.text.encode('utf-8'))
+    newdoc = dmp.patch_apply(dmp_patches, doc.text)
+
+    d = difflib.SequenceMatcher(None, doc.text, newdoc[0])
+    hilightdoc = show_diff(d)
 
     from pygments import highlight
     from pygments.lexers import DiffLexer
