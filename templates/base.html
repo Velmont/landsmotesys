@@ -11,6 +11,17 @@
 @import "style.css";
 table, td, tr, colgroup { border: 0; }
 table td { padding: 0 4px; }
+
+.form { width: 550px; background-color: transparent; }
+.form .rad { position: relative; }
+.form textarea + .forklaring, .form input + .forklaring { display: none; }
+.form textarea:focus + .forklaring, .form input:focus + .forklaring { display: block; }
+.form textarea:focus, .form input:focus { background-color: #fee; border: 1px solid #faa; }
+.form pre { white-space: pre-wrap; }
+.form label { clear: both; margin: 20px 0 0 0; }
+.form code { background-color: #ddd; }
+.forklaring { position: absolute; right: 0; top: 0; width: 200px; margin: 0 -220px 0 0; background-color: #fee; padding: 5px; font-size: 1.2em; line-height: 1.4em;  border: 1px solid #faa; }
+
 .diff_header { font-size: 0.8em; color: #666; text-align: right; }
 
 .highlight pre { white-space: pre-wrap; }

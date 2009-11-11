@@ -3,6 +3,10 @@
 
 {% block content %}
 
+<ul class="handlingar">
+	<li><a href="/framlegg/doc/{{ doc.pk }}/edit/">Kom med endringsforslag</a>
+</ul>
+
 {{ doc.text|markdown }}
 
 <ul>
@@ -11,7 +15,5 @@
 {% endfor %}
 </ul>
 
-<a href="/framlegg/doc/{{ doc.pk }}/edit/">Edit document</a>
-<a href="/framlegg/">Attende</a>
 
 {% endblock %}
