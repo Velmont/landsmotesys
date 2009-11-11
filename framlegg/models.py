@@ -34,17 +34,22 @@ class Document(models.Model):
 
 
 class Patch(models.Model):
-    text = models.TextField()
     document = models.ForeignKey(Document)
     written_by = models.CharField(max_length=200)
+    added_by = models.CharField(max_length=200)
+    line_no = models.CharField(max_length=20)
+
+    what_to_change = models.TextField()
+    diff = models.TextField()
 
     # Info
     reason = models.TextField(blank=True, null=True)
 
     # Voting
-    nemnd_vote = models.ForeignKey(Vote, related_name="patch_nemnd", null=True, blank=True)    # Innstilling
-    nemnd_superseeded_by = models.ForeignKey('Patch', null=True, blank=True)    # Innstilling
-    final_vote = models.ForeignKey(Vote, related_name="patch_final", null=True, blank=True)    # Vedtak
+    nemnd_accepted = models.BooleanField(default=False)
+    nemnd_desc = models.TextField(blank=True, null=True)
+    nemnd_superseeded_by = models.ForeignKey('Patch', null=True, blank=True)
+    accepted = models.BooleanField(default=False) # Vedtak
 
     # Kinda-meta
     created = models.DateField(auto_now_add=True)

@@ -42,7 +42,7 @@ def patch_make(request, doc_id):
 #                        tofile="new")
 
 #    diff_string = ''.join(list(diff))
-    p = Patch(text=dmp_patch, document=doc, written_by='test', created_by='odin', reason=request.POST['reason'])
+    p = Patch(diff=dmp_patch, document=doc, written_by='test', created_by='odin', reason=request.POST['reason'])
     p.save()
 
     return HttpResponseRedirect(
@@ -57,7 +57,7 @@ def patch_view(request, doc_id, patch_id):
     from diff_match_patch import diff_match_patch
     import difflib
     dmp = diff_match_patch()
-    dmp_patches = dmp.patch_fromText(p.text.encode('utf-8'))
+    dmp_patches = dmp.patch_fromText(p.diff.encode('utf-8'))
     newdoc = dmp.patch_apply(dmp_patches, doc.text)
 
     d = difflib.SequenceMatcher(None, doc.text, newdoc[0])
@@ -67,7 +67,7 @@ def patch_view(request, doc_id, patch_id):
     from pygments.lexers import DiffLexer
     from pygments.formatters import HtmlFormatter
 
-    diff = highlight(p.text, DiffLexer(), HtmlFormatter())
+    diff = highlight(p.diff, DiffLexer(), HtmlFormatter())
 
 
     return render_to_response('framlegg/patch_view.html',
