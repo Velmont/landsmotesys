@@ -4,38 +4,18 @@
 
 <h2>Endringsframlegg til {{ doc.title }}</h2>
 
+
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<form action="/framlegg/doc/{{ doc.pk }}/patch_make/" method="post" class="form">
+<form action="{% url framlegg.views.doc_edit doc.pk %}" method="post" class="form">
 {#% csrf_token %#}
     <p>Ikkje skriv inn meir enn <em>ei logisk endring</em> for kvar gong, slik at det vert
     enkelt å stemma for forslaga kvar for seg.</p>
-    <div class="rad">
-      <label for="line_no">Linje frå-til</label>
-      <input type="text" name="line_no" id="line_no">
-      <p class="forklaring">Start med eit tal, t.d. <code>123-125,145</code></p>
-    </div>
-    <div class="rad">
-      <label for="what_to_change">Forklar endringsframlegget</label>
-      <textarea id="what_to_change" name=what_to_change" cols="70" rows="10"></textarea>
-      <div class="forklaring">
-         <p>Dersom det er ei endring du kjem med, skriv det på følgjande måte:</p>
-         <pre>Endra line 123-125 frå:
-   Nei til EU skal i dei komande vekene gjera mykje bra.
+<ul class="realform">
+{{ form.as_ul }}
+</ul>
 
-til:
-   Nei til EU skal i dei komande vekene gjera heilt ekstremt mykje bra.</pre>
-      </div>
-    </div>
-
-<!--    <label for="text">Text<br>
-        <textarea id="text" name="text" cols="70" rows="10">{{ doc.text }}</textarea>
-    </label>-->
-    <label>Grunngjeving for endringa<br>
-        <textarea id="reason" name="reason" cols="70" rows="4"></textarea>
-    </label>
-
-<input type="submit" value="Edit">
+<input type="submit" value="Send inn endringsframlegg">
 </form>
 
 {% endblock %}

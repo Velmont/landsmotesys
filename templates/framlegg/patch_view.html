@@ -3,13 +3,16 @@
 
 {% block content %}
 <h2>Framlegg {{patch.pk}}, til &laquo;{{ doc.title }}&raquo;</h2>
-
-<p class='reason'>{{ patch.reason }}</p>
+<p class="info">Stilt av {{ patch.backed_by }}</p>
+<div class='framlegg'>
+  {{ patch.what_to_change|markdown }}
+</div>
 
 {{ diff|safe }}
 
+{% if newdoc %}
 <div class="after">{{ newdoc|markdown }}</div>
-
+{% endif %}
 
 <a href="/framlegg/doc/{{ doc.pk }}/edit/">Edit document</a>
 <a href="/framlegg/">Attende</a>

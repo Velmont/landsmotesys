@@ -2,9 +2,20 @@
 
 {% block content %}
 <h2>Dokument</h2>
-<ul>
-{% for doc in docs %}
-    <li><a href="/framlegg/doc/{{ doc.pk }}/">{{ doc.title }}</a>
+{% regroup docs by category as docs_by_cat %}
+
+{% for c in docs_by_cat %}
+    <h3>{{ c.grouper }}</h3>
+    <table>
+    <colgroup>
+    <colgroup class="dato">
+    <colgroup class="dato">
+    <thead>
+        <tr><th>Dokument <th>Forslag <th>Dato
+    <tbody>
+    {% for doc in c.list %}
+      <tr><td><a href="/framlegg/doc/{{ doc.pk }}/">{{ doc.title }}</a><td>{{ doc.num_patches }}<td>{{ doc.created }}
+    {% endfor %}
+    </table>
 {% endfor %}
-</ul>
 {% endblock %}
