@@ -2,18 +2,18 @@
 
 {% block content %}
 <h2>Dokument</h2>
-{% regroup docs by category as docs_by_cat %}
 
-{% for c in docs_by_cat %}
-    <h3>{{ c.grouper }}</h3>
+{% for cat in cats %}
+    <h3>{{ cat.name }}</h3>
+    <p class="visframlegg"><a href="{{ cat.get_absolute_url }}">Vis alle framlegg i {{ cat.name|lower }}</a>
     <table>
     <colgroup>
     <colgroup class="dato">
     <colgroup class="dato">
     <thead>
-        <tr><th>Dokument <th>Forslag <th>Dato
+        <tr><th>Dokument <th>Framlegg <th>Dato
     <tbody>
-    {% for doc in c.list %}
+    {% for doc in cat.document_set.all %}
       <tr><td><a href="/framlegg/doc/{{ doc.pk }}/">{{ doc.title }}</a><td>{{ doc.num_patches }}<td>{{ doc.created }}
     {% endfor %}
     </table>

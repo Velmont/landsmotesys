@@ -4,16 +4,18 @@
 {% block content %}
 
 <ul class="handlingar">
-	<li><a href="/framlegg/doc/{{ doc.pk }}/edit/">Kom med endringsforslag</a>
+	<li><a href="/framlegg/doc/{{ doc.pk }}/new_patch/">Kom med endringsforslag</a>
 </ul>
 
 {{ doc.text|markdown }}
 
-<ul>
-{% for p in doc.patch_set.all %}
-    <li><a href="/framlegg/doc/{{doc.pk}}/patch/{{p.pk}}/">Endringsframlegg {{ p.pk }}</a>, stilt av {{ p.backed_by }}
+{% if patches %}
+<h2>{{ patches|length }} innkom{{ patches|length|pluralize:"e,ne" }} endringsframlegg</h2>
+{% for patch in patches %}
+  {% include "framlegg/patch_list_part.html" %}
 {% endfor %}
-</ul>
-
+{% else %}
+<h2>Ingen innkomne endringsframlegg</h2>
+{% endif %}
 
 {% endblock %}

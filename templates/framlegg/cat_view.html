@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load markup %}
+
+{% block content %}
+
+<h1>{{ cat.name }}</h1>
+
+{% for doc in docs %}
+  <h1>{{ doc.title }}</h1>
+  {% with doc.patches as patches %}
+    {% if patches %}
+      <h2>{{ patches|length }} innkom{{ patches|length|pluralize:"e,ne" }} endringsframlegg</h2>
+      {% for patch in patches %}
+        {% include "framlegg/patch_list_part.html" %}
+      {% endfor %}
+    {% else %}
+      <h2>Ingen innkomne endringsframlegg</h2>
+    {% endif %}
+  {% endwith %}
+  <div class="iheilskap">
+    <p>Dokumentet i heilskap: {{ doc.get_nemnd_accepted_display }}
+  </div>
+{% endfor %}
+
+
+{% endblock %}

@@ -1,21 +1,30 @@
 # vim: ts=4 sts=4 expandtab sw=4 fileencoding=utf8
 from django.db import models
 from django.forms import ModelForm
+from django.db.models import permalink
 
 class Category(models.Model):
     name = models.CharField(max_length=200)
 
-    def __unicode__(self):
-        return self.name
-
-
-class Vote(models.Model):
-    name = models.CharField(max_length=200)
-    accepted = models.BooleanField()
+    @models.permalink
+    def get_absolute_url(self):
+        return ('framlegg.views.cat_view', [str(self.pk)])
 
     def __unicode__(self):
         return self.name
 
+# Proposed accepted/declined
+VOTE_NEMND_CHOICES = (
+    ('W', 'Inga tilråding enno'),
+    ('PA', 'Tilrådd vedteke'),
+    ('PD', 'Tilrådd avvist'),
+)
+
+VOTE_CHOICES = (
+    ('W', 'Ingen stemme'),
+    ('A', 'Tilrådd vedteke'),
+    ('D', 'Tilrådd avvist'),
+)
 
 class Document(models.Model):
     title = models.CharField(max_length=200)
@@ -23,8 +32,12 @@ class Document(models.Model):
     category = models.ForeignKey(Category)
 
     # Voting
-    nemnd_vote = models.ForeignKey(Vote, related_name="document_nemnd", null=True, blank=True)    # Innstilling
-    final_vote = models.ForeignKey(Vote, related_name="document_final", null=True, blank=True)    # Vedtak
+    nemnd_accepted = models.CharField(max_length=2,
+                                      choices=VOTE_NEMND_CHOICES,
+                                      default="W")
+    accepted = models.CharField(max_length=2,
+                                choices=VOTE_CHOICES,
+                                default="W")
 
     # Kinda-meta
     created = models.DateField(auto_now_add=True)
@@ -63,14 +76,18 @@ til:
     reason = models.TextField(blank=True, null=True)
 
     # Voting
-    nemnd_accepted = models.BooleanField(default=False)
+    nemnd_accepted = models.CharField(max_length=2,
+        choices=VOTE_NEMND_CHOICES,
+        default="W")
+    accepted = models.CharField(max_length=2,
+       choices=VOTE_CHOICES,
+       default="W")
     nemnd_desc = models.TextField(blank=True, null=True)
     nemnd_superseeded_by = models.ForeignKey('Patch', null=True, blank=True)
-    accepted = models.BooleanField(default=False) # Vedtak
 
     # Kinda-meta
     created = models.DateField(auto_now_add=True)
-    created_by = models.CharField(max_length=200)
+    created_by = models.CharField(max_length=200, default="Systemet")
 
     def __unicode__(self):
         return "Patch %d" % self.pk
