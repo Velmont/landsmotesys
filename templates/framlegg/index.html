@@ -1,21 +1,40 @@
 {% extends "base.html" %}
 
+{% block bodyclass %}doklist{% endblock %}
+
 {% block content %}
 <h2>Dokument</h2>
 
 {% for cat in cats %}
     <h3>{{ cat.name }}</h3>
-    <p class="visframlegg"><a href="{{ cat.get_absolute_url }}">Vis alle framlegg i {{ cat.name|lower }}</a>
-    <table>
-    <colgroup>
-    <colgroup class="dato">
-    <colgroup class="dato">
-    <thead>
-        <tr><th>Dokument <th>Framlegg <th>Dato
-    <tbody>
+    <ul class="nav">
+        <li><a href="{{ cat.get_absolute_url }}">Alle framlegg i {{ cat.name|lower }}</a>
+    </ul>
     {% for doc in cat.document_set.all %}
-      <tr><td><a href="/framlegg/doc/{{ doc.pk }}/">{{ doc.title }}</a><td>{{ doc.num_patches }}<td>{{ doc.created }}
+        <h4>{{ doc.title }}</h4>
+
+        <ul class="nav2">
+            <li><a href="{% url framlegg.views.doc_edit doc.pk %}#content">Kom med endringsframlegg</a>
+        </ul>
+        {% if doc.patch_set.all %}
+        <table>
+        <colgroup class="id">
+        <colgroup class="lineno">
+        <colgroup class="by">
+        <thead>
+            <tr>
+            <th>ID
+              <th>Linjenr
+              <th>Framleggsstillar
+        <tbody>
+        {% for patch in doc.patch_set.all %}
+          <tr>
+            <td>{{ patch.pk }}
+            <td>{{ patch.line_no }}
+            <td>{{ patch.backed_by }}
+        {% endfor %}
+        </table>
+        {% else %}<p>Finn ingen framlegg til dette dokumentet</p>{% endif %}
     {% endfor %}
-    </table>
 {% endfor %}
 {% endblock %}

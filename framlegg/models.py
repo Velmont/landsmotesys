@@ -52,6 +52,9 @@ class Document(models.Model):
     def __unicode__(self):
         return self.title
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('framlegg.views.doc_view', [str(self.pk)])
 
 class Patch(models.Model):
     document = models.ForeignKey(Document)
