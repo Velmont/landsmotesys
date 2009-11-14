@@ -19,5 +19,5 @@ urlpatterns = patterns('',
 
 if settings.DEBUG:
     urlpatterns += patterns('',
-        (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/home/odin/Kode/landsmotesys/htdocs/media'}),
+        (r'^web/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/home/odin/Kode/landsmotesys/htdocs/web'}),
     )
