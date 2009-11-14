@@ -5,6 +5,7 @@ import settings
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    (r'^$', 'django.views.generic.simple.direct_to_template', {'template': 'index.html'}),
     (r'^framlegg/', include('framlegg.urls')),
     # Example:
     # (r'^landsmotesys/', include('landsmotesys.foo.urls')),
