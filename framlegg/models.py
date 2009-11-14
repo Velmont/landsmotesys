@@ -54,7 +54,7 @@ class Document(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('framlegg.views.doc_view', [str(self.pk)])
+        return ('framlegg.views.document', [str(self.pk)])
 
 class Patch(models.Model):
     document = models.ForeignKey(Document)
