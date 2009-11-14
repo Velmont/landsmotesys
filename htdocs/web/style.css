@@ -23,5 +23,5 @@ input[type="submit"] { float: right; }
 .handlingar { font-size: 10pt; margin: 0; padding: 0; position: absolute; right: 0; margin-top: -20px; }
 .handlingar li { margin: 0 0 0 10px; display: block; float: left; }
 
-#footer { font-size: 8pt; color: #aaa; text-align: right; }
+#footer { font-size: 8pt; color: #aaa; text-align: right; margin-top: 40px; }
 #footer a { color: #a77 }
