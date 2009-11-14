@@ -14,8 +14,8 @@
         <h4>{{ doc.title }}</h4>
 
         <ul class="nav2">
-            <li><a href="{% url framlegg.views.doc_view doc.pk %}#content">Vis endringsframlegg</a>
-            <li><a href="{% url framlegg.views.doc_edit doc.pk %}#content">Kom med endringsframlegg</a>
+            <li><a href="{{ doc.get_absolute_url }}#content">Vis endringsframlegg</a>
+            <li><a href="{{ doc.get_absolute_url }}#endringsframlegg">Kom med endringsframlegg</a>
         </ul>
         {% if doc.patch_set.all %}
         <table>

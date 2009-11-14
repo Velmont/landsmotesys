@@ -14,17 +14,7 @@ def index(request):
     return render_to_response('framlegg/index.html',
                               {'cats': cats})
 
-def doc_view(request, doc_id):
-    doc = get_object_or_404(Document, pk=doc_id)
-
-    doc.patches = sorted(doc.patch_set.all(),
-                     cmp_str_as_int,
-                     key=operator.attrgetter('line_no'))
-
-    return render_to_response('framlegg/detail.html',
-                              {'doc': doc})
-
-def doc_edit(request, doc_id):
+def document(request, doc_id):
     doc = get_object_or_404(Document, pk=doc_id)
 
     if request.method == 'POST':
@@ -32,14 +22,16 @@ def doc_edit(request, doc_id):
         form = PatchForm(request.POST, instance=p)
         if form.is_valid():
             p = form.save()
-            return HttpResponseRedirect(
-                reverse('framlegg.views.patch_view', args=(doc.id,
-                        p.id,))
-            )
+            return HttpResponseRedirect("%s#p%d" %
+                    (request.build_absolute_uri(), p.pk))
     else:
         form = PatchForm()
 
-    return render_to_response('framlegg/edit.html',
+    doc.patches = sorted(doc.patch_set.all(),
+                     cmp_str_as_int,
+                     key=operator.attrgetter('line_no'))
+
+    return render_to_response('framlegg/document.html',
                               {'doc': doc, 'form': form},
                               context_instance=RequestContext(request))
 
