@@ -3,6 +3,25 @@
 {% block bodyclass %}heim{% endblock %}
 
 {% block content %}
-<p>Denne framsida er for tida ganske lite innhaldsrik. Det er i
-  <a href="{% url framlegg.views.index %}">framlegg</a> det meste skjer. Gå dit.
+<p>Dette er ein enkel oversikt over alle dokument. Trykk på dokumentet so får
+du høve til å levera endringsframlegg.
+<p>Dersom du ikkje vert lett forvirra, so kan du bruka den meir <a href="{% url
+framlegg.views.index %}">avanserte lista</a> som har meir informasjon og fleire
+val.
+
+{% for c in object_list %}
+    <h3>{{ c.name }}</h3>
+    <table>
+    <colgroup class="tdokument">
+    <colgroup class="tframlegg">
+    <colgroup class="tdato">
+    <thead>
+        <tr><th>Dokument <th>Framlegg <th>Dato
+    <tbody>
+    {% for doc in c.document_set.all %}
+      <tr><td><a href="{{ doc.get_absolute_url }}">{{ doc.title }}</a><td>{{ doc.num_patches }}<td>{{ doc.created }}
+    {% endfor %}
+    </table>
+{% endfor %}
+
 {% endblock %}
