@@ -26,6 +26,25 @@ class PatchAdmin(admin.ModelAdmin):
         })
     )
 
+    class Media:
+        css = {"all": ("/web/admin.css",)}
+
+class PatchInline(admin.StackedInline):
+    model = Patch
+    fields = ('backed_by', 'line_no', 'what_to_change', 'nemnd_accepted', 'nemnd_desc', 'nemnd_superseeded_by')
+    extra = 1
+
+class DocumentAdmin(admin.ModelAdmin):
+    list_display = ('__unicode__', 'category', 'num_patches', 'nemnd_accepted')
+    list_filter = ('category',)
+    list_editable = ('nemnd_accepted',)
+    inlines = [PatchInline,]
+
+    class Media:
+        css = {"all": ("/web/admin.css",)}
+
+
+
+admin.site.register(Document, DocumentAdmin)
 admin.site.register(Patch, PatchAdmin)
 admin.site.register(Category)
-admin.site.register(Document)
