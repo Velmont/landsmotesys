@@ -6,19 +6,19 @@
 {% block content %}
 
 <ul class="handlingar">
-	<li><a href="/framlegg/doc/{{ doc.pk }}/new_patch/">Kom med endringsforslag</a>
+	<li><a href="#endringsframlegg">Levér endringsframlegg</a>
 </ul>
 
+<div style="background-color: yellow"><p><strong>Odin:</strong> Eg må finna ut
+kva me skal gjera her med å visa dokumenti. Det er litt dumt å visa det, av di
+me ikkje hev nummerering slik som dei dokumenti som er sendt ut.
+<p>Det kann henda eg klarar få ut noko som vert heilt likt, men hev ikkje
+prøvd. Dessutan treng me nummerering for nye dokument som kjem inn.
+<p>Elles so tenkjer eg at alle hev fengje ut dei ANDRE dokumenti, so me treng
+sikkert ikkje visa dei på netsida i det heile teke. I svo fall gjer det alt
+enklare. Då treng eg berre laga linenummer for innsendte dokument.
+</div>
 {{ doc.text|markdown }}
-
-{% if doc.patches %}
-<h2 id="framlegg">{{ doc.patches|length }} innkom{{ doc.patches|length|pluralize:"e,ne" }} endringsframlegg</h2>
-{% for patch in doc.patches %}
-  {% include "framlegg/patch_list_part.html" %}
-{% endfor %}
-{% else %}
-<h2 id="framlegg">Ingen innkomne endringsframlegg</h2>
-{% endif %}
 
 <h2 id="endringsframlegg">Kom med eit framlegg til endring</h2>
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
@@ -33,5 +33,14 @@
 
 <input type="submit" value="Send inn endringsframlegg">
 </form>
+
+{% if doc.patches %}
+<h2 id="framlegg">{{ doc.patches|length }} innkom{{ doc.patches|length|pluralize:"e,ne" }} endringsframlegg</h2>
+{% for patch in doc.patches %}
+  {% include "framlegg/patch_list_part.html" %}
+{% endfor %}
+{% else %}
+<h2 id="framlegg">Ingen innkomne endringsframlegg</h2>
+{% endif %}
 
 {% endblock %}
