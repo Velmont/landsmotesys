@@ -3,6 +3,7 @@ from django.db import models
 from django.forms import ModelForm
 from django.db.models import permalink
 import datetime
+import textwrap
 
 class Category(models.Model):
     name = models.CharField(max_length=200)
@@ -52,6 +53,10 @@ class Document(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        self.text = textwrap.fill(self.text, width=78, replace_whitespace=False)
+        super(Document, self).save(*args, **kwargs)
 
     @models.permalink
     def get_absolute_url(self):
