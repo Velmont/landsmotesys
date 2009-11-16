@@ -20,30 +20,33 @@ VOTE_NEMND_CHOICES = (
     ('W', 'Inga tilråding enno'),
     ('PA', 'Tilrådd vedteke'),
     ('PD', 'Tilrådd avvist'),
+    ('NA', 'Inga tilråding teke'),
 )
 
 VOTE_CHOICES = (
-    ('W', 'Ingen stemme'),
+    ('W', 'Ikkje stemt over'),
     ('A', 'Tilrådd vedteke'),
     ('D', 'Tilrådd avvist'),
 )
 
 class Document(models.Model):
-    title = models.CharField(max_length=200)
-    text = models.TextField(null=True, blank=True)
-    category = models.ForeignKey(Category)
+    title = models.CharField("Tittel", max_length=200)
+    text = models.TextField("Dokumenttekst", null=True, blank=True)
+    category = models.ForeignKey(Category, verbose_name="Sak")
+    backed_by = models.CharField("Fremma av", max_length=200)
 
     # Voting
     nemnd_accepted = models.CharField(max_length=2,
                                       choices=VOTE_NEMND_CHOICES,
                                       default="W")
+    nemnd_desc = models.TextField(null=True, blank=True)
     accepted = models.CharField(max_length=2,
                                 choices=VOTE_CHOICES,
                                 default="W")
 
     # Kinda-meta
-    created = models.DateField(default=datetime.date.today)
-    created_by = models.CharField(max_length=200)
+    created = models.DateTimeField(default=datetime.date.today)
+    created_by = models.CharField(max_length=200, default="Systemet")
 
     class Meta:
         ordering = ('category', '-created')
@@ -70,7 +73,7 @@ class DocumentForm(ModelForm):
 
 class Patch(models.Model):
     document = models.ForeignKey(Document)
-    backed_by = models.CharField("Foreslått av", max_length=200, help_text="""
+    backed_by = models.CharField("Fremma av", max_length=200, help_text="""
 <p class="forklaring">Namnet ditt (og eventuelt andre)""")
     line_no = models.CharField("Linenummer", max_length=20, help_text="""
 <p class="forklaring">Start med eit tal, t.d. <code>123-125,145</code></p>""")
@@ -102,7 +105,7 @@ til:
     nemnd_superseeded_by = models.ForeignKey('Patch', null=True, blank=True)
 
     # Kinda-meta
-    created = models.DateField(default=datetime.date.today)
+    created = models.DateTimeField(default=datetime.datetime.now)
     created_by = models.CharField(max_length=200, default="Systemet")
 
     def __unicode__(self):
