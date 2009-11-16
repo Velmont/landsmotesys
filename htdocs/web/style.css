@@ -16,8 +16,68 @@ form { display: block; background-color: #cec; padding: 10px 20px 10px 10px; bor
 form a, form a:hover { color: #000; }
 label { color: white; display: block; }
 input, textarea { background-color: #fff; color: #000; border: 1px solid #ccc; clear: left; }
-input[type="submit"] { float: right; }
 
+/*th { text-align: left; font-weight: normal; }*/
+h3 { margin-bottom: 4px; }
+
+.form { width: 550px; background-color: transparent; }
+.form textarea + .forklaring, .form input + .forklaring { display: none; }
+.form textarea:focus + .forklaring, .form input:focus + .forklaring { display: block; }
+.form textarea:focus, .form input:focus { background-color: #fee; border: 1px solid #faa; }
+.form pre { white-space: pre-wrap; }
+.form label { clear: both; margin: 0; z-index: 2; }
+.form code { background-color: #ddd; }
+.forklaring { position: absolute; right: 0; top: 1em; width: 340px; margin: 0 -220px 0 0; background-color: #fee; padding: 5px; font-size: 0.8em; line-height: 1.4em;  border: 1px solid #faa; }
+.forklaring pre { line-height: 1.1em; }
+.realform { padding: 0; }
+.realform li { list-style: none; position: relative; margin: 20px 0 0 20px; }
+.form textarea { width: 380px; }
+
+div.framlegg { background-color: #efe; border: 1px solid #afa; padding: 0 10px; }
+
+.doklist table, .doklist p { margin: 0 0 40px 20px; width: 780px;}
+.doklist h3 { margin: 8px 0 8px 0; width: 100%; border-bottom: 1px solid gray; }
+.doklist h4 { margin: 20px 0 4px 20px; }
+.nav { position: relative; float: right; padding: 0; margin: 0; bottom: 1.5em; height: 0; }
+.nav li { display: inline; padding-left: 20px; list-style: none; font-size: 0.8em;}
+.nav2 { font-size: 0.8em; padding: 0 0 0 40px; margin-top: 0; }
+p.visframlegg{ margin: 0 0 0 5px; font-size: 0.8em; display: inline; }
+
+table { width: 100%; border-collapse: collapse; border: 1px hidden; font-size: 0.9em; }
+td, th { border-left: 1px solid gray; text-align: left; padding: 0 5px; }
+th { font-size: 0.8em; border-bottom: 1px solid #ccc; border-left: 1px solid #ccc; background-color: #eee; }
+
+table.framlegg { margin-bottom: 60px; }
+/* Framleggsvisning i dokumentet */
+.framlegg td { background-color: #eee; }
+.framlegg th { border-bottom: none; border-color: gray; }
+td.text { border: 1px solid gray; background-color: transparent; }
+th.id, td.id { background-color: transparent; text-align: center; }
+th.id { color: #333; font-weight: normal; font-size: 0.8em; }
+td.id { font-size: 1.4em; font-weight: bold; }
+
+/* Breidde */
+table .id { width: 67px; }
+table .lineno { width: 150px; }
+table .innst { width: 150px; }
+
+table .tdato { width: 75px; }
+table .tframlegg { width: 75px; }
+
+#id_reason { height: 40px; }
+
+.errorlist { padding: 0; width: 100%; background-color: #fee; display: block; z-index: 0; }
+.errorlist li { margin: 0; font-size: 1.4em; font-weight: bold; color: #a00; text-align: right; z-index: 0; }
+
+.diff_header { font-size: 0.8em; color: #666; text-align: right; }
+
+.highlight pre { white-space: pre-wrap; }
+.diff_add, ins, .gi { background-color: #afa; }
+.diff_sub, del, .gd { background-color: #faa; }
+
+.iheilskap { text-align: center; font-size: 1.3em; font-weight: bold; margin: 0 0 60px; text-transform: uppercase; }
+
+.after { border: 1px solid #77a; background-color: #e0e0f5; width: 80%; margin: 20px auto; padding: 10px; }
 #readme { font-family: monospace; width: 560px; }
 
 .handlingar { font-size: 10pt; margin: 0; padding: 0; position: absolute; right: 0; margin-top: -20px; }
