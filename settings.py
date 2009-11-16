@@ -70,4 +70,5 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.markup',
     'framlegg',
+    'func',
 )
