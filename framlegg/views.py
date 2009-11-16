@@ -22,7 +22,7 @@ def document(request, doc_id):
         form = PatchForm(request.POST, instance=p)
         if form.is_valid():
             p = form.save()
-            return HttpResponseRedirect("%s#p%d" %
+            return HttpResponseRedirect("%s#patch%d" %
                     (request.build_absolute_uri(), p.pk))
     else:
         form = PatchForm()
