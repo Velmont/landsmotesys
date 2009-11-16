@@ -83,7 +83,8 @@ table .tdokument { width: 270px; }
 .diff_add, ins, .gi { background-color: #afa; }
 .diff_sub, del, .gd { background-color: #faa; }
 
-.iheilskap { text-align: center; font-size: 1.3em; font-weight: bold; margin: 0 0 60px; text-transform: uppercase; }
+.category h3, .iheilskap { text-align: center; font-size: 1em; text-transform: uppercase; font-weight: bold; }
+.iheilskap { padding: 0 0 60px 0; margin: 60px 0 60px; border-bottom: 1px solid gray; }
 
 .after { border: 1px solid #77a; background-color: #e0e0f5; width: 80%; margin: 20px auto; padding: 10px; }
 #readme { font-family: monospace; width: 560px; }
