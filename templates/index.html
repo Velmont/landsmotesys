@@ -13,13 +13,18 @@ informasjon og fleire val.
     <h3>{{ c.name }}</h3>
     <table>
     <colgroup class="tdokument">
+    <colgroup class="tstillar">
     <colgroup class="tframlegg">
     <colgroup class="tdato">
     <thead>
-        <tr><th>Dokument <th>Framlegg <th>Dato
+        <tr><th>Dokument <th>Frå kven? <th>Framlegg <th>Dato
     <tbody>
     {% for doc in c.document_set.all %}
-      <tr><td><a href="{{ doc.get_absolute_url }}">{{ doc.title }}</a><td>{{ doc.num_patches }}<td>{{ doc.created }}
+      <tr>
+        <td><a href="{{ doc.get_absolute_url }}">{{ doc.title }}</a>
+        <td>{{ doc.created_by }}
+        <td>{{ doc.num_patches }}
+        <td>{{ doc.created }}
     {% endfor %}
     </table>
 {% endfor %}

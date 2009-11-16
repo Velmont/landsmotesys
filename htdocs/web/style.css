@@ -41,6 +41,7 @@ div.framlegg { background-color: #efe; border: 1px solid #afa; padding: 0 10px; 
 .doklist table, .doklist p { margin: 0 0 40px 20px; width: 780px;}
 .doklist h3 { margin: 8px 0 8px 0; width: 100%; border-bottom: 1px solid gray; }
 .doklist h4 { margin: 20px 0 4px 20px; }
+h4 small { font-weight: normal; }
 .nav { position: relative; float: right; padding: 0; margin: 0; bottom: 1.5em; height: 0; }
 .nav li { display: inline; padding-left: 20px; list-style: none; font-size: 0.8em;}
 .nav2 { font-size: 0.8em; padding: 0 0 0 40px; margin-top: 0; }
@@ -68,6 +69,7 @@ table .innst { width: 150px; }
 
 table .tdato { width: 75px; }
 table .tframlegg { width: 75px; }
+table .tdokument { width: 270px; }
 
 #id_reason { height: 40px; }
 

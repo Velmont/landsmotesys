@@ -11,7 +11,7 @@
         <li><a href="{{ cat.get_absolute_url }}">Alle framlegg i {{ cat.name|lower }}</a>
     </ul>
     {% for doc in cat.document_set.all %}
-        <h4>{{ doc.title }}</h4>
+        <h4>{{ doc.title }} <small>frå {{ doc.created_by }}</small></h4>
 
         <ul class="nav2">
             <li><a href="{{ doc.get_absolute_url }}">Vis dokument</a>
