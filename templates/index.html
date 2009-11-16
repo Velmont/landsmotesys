@@ -23,9 +23,9 @@ informasjon og fleire val.
     {% for doc in c.document_set.all %}
       <tr>
         <td><a href="{{ doc.get_absolute_url }}">{{ doc.title|truncatesmart:37 }}</a>
-        <td>{{ doc.created_by|truncatesmart:45 }}
+        <td>{{ doc.backed_by|truncatesmart:45 }}
         <td>{{ doc.num_patches }}
-        <td>{{ doc.created }}
+        <td>{{ doc.created|date:"Y-m-d" }}
     {% endfor %}
     </table>
 {% endfor %}
