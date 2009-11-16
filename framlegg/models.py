@@ -57,6 +57,12 @@ class Document(models.Model):
     def get_absolute_url(self):
         return ('framlegg.views.document', [str(self.pk)])
 
+class DocumentForm(ModelForm):
+    class Meta:
+        model = Document
+        fields = ('category', 'title', 'text', 'created_by')
+
+
 class Patch(models.Model):
     document = models.ForeignKey(Document)
     backed_by = models.CharField("Foreslått av", max_length=200, help_text="""

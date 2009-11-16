@@ -1,4 +1,5 @@
 from django.conf.urls.defaults import *
+from models import DocumentForm
 
 urlpatterns = patterns('framlegg.views',
     (r'^$', 'index'),
@@ -6,6 +7,7 @@ urlpatterns = patterns('framlegg.views',
     (r'^cat/(?P<cat_id>\d+)/$', 'cat_view'),
 )
 
-urlpatterns += patterns('',
-    (r'^doc/new/$', 'django.views.generic.simple.direct_to_template', {'template': 'framlegg/doc_new.html'}),
+urlpatterns += patterns('django.views.generic',
+    #(r'^doc/new/$', 'simple.direct_to_template', {'template': 'framlegg/doc_new.html'}),
+    (r'^doc/new/$', 'create_update.create_object', {'form_class': DocumentForm}),
 )
