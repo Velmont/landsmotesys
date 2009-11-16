@@ -5,9 +5,9 @@
 {% block content %}
 <p>Dette er ein enkel oversikt over alle dokument. Trykk på dokumentet so får
 du høve til å levera endringsframlegg.
-<p>Dersom du ikkje vert lett forvirra, so kan du bruka den meir <a href="{% url
-framlegg.views.index %}">avanserte lista</a> som har meir informasjon og fleire
-val.
+<p>Dersom du ikkje vert lett forvirra, so kan du bruka den meir
+ <a href="{% url framlegg.views.index %}">avanserte lista</a> som har meir
+informasjon og fleire val.
 
 {% for c in object_list %}
     <h3>{{ c.name }}</h3>
