@@ -2,6 +2,7 @@
 from django.db import models
 from django.forms import ModelForm
 from django.db.models import permalink
+import datetime
 
 class Category(models.Model):
     name = models.CharField(max_length=200)
@@ -40,7 +41,7 @@ class Document(models.Model):
                                 default="W")
 
     # Kinda-meta
-    created = models.DateField(auto_now_add=True)
+    created = models.DateField(default=datetime.date.today)
     created_by = models.CharField(max_length=200)
 
     class Meta:
@@ -76,7 +77,8 @@ til:
     diff = models.TextField(blank=True, null=True)
 
     # Info
-    reason = models.TextField(blank=True, null=True)
+    reason = models.TextField("Grunngjeving", blank=True, null=True, help_text="""
+<p class="forklaring">Friviljugt felt</p>""")
 
     # Voting
     nemnd_accepted = models.CharField(max_length=2,
@@ -89,7 +91,7 @@ til:
     nemnd_superseeded_by = models.ForeignKey('Patch', null=True, blank=True)
 
     # Kinda-meta
-    created = models.DateField(auto_now_add=True)
+    created = models.DateField(default=datetime.date.today)
     created_by = models.CharField(max_length=200, default="Systemet")
 
     def __unicode__(self):
@@ -98,4 +100,4 @@ til:
 class PatchForm(ModelForm):
     class Meta:
         model = Patch
-        fields = ('backed_by', 'line_no', 'what_to_change')
+        fields = ('backed_by', 'line_no', 'what_to_change', 'reason')

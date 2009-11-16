@@ -11,7 +11,7 @@ class PatchAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': (('document', 'backed_by', 'line_no'),
-                        'what_to_change',)
+                        ('what_to_change', 'reason'),)
         }),
         ('Nemnding', {
             'fields': ('nemnd_accepted',
@@ -21,7 +21,6 @@ class PatchAdmin(admin.ModelAdmin):
         ('Avansert', {
             'classes': ('collapse',),
             'fields': ('created_by',
-                       'reason',
                        'diff',)
         })
     )
