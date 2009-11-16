@@ -63,8 +63,9 @@ td.id { font-size: 1.4em; font-weight: bold; }
 #content .syntaxhighlighter .lines .alt1 { background-color: #f5f5f5 !important; }
 
 /* Breidde */
-table .id { width: 67px; }
-table .lineno { width: 150px; }
+table .id { width: 45px; }
+.category table .id { width: 75px; }
+table .lineno { width: 155px; }
 table .innst { width: 150px; }
 
 table .tdato { width: 75px; }
