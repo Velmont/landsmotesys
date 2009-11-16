@@ -67,6 +67,7 @@ table .id { width: 45px; }
 .category table .id { width: 75px; }
 table .lineno { width: 155px; }
 table .innst { width: 150px; }
+table .dato { width: 75px; }
 
 table .tdato { width: 75px; }
 table .tframlegg { width: 75px; }

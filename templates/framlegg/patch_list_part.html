@@ -4,14 +4,16 @@
    <th class="id">ID
    <th class="lineno">Linenr
    <th class="by">Forslagsstillar
+   <th class="dato">Levert
    <th class="innst">Innstilling
  <tr>
    <td class="id">{{ patch.pk }}
    <td>{{ patch.line_no }}
    <td>{{ patch.backed_by }}
+   <td>{{ patch.created|date:"d, H.i" }}
    <td>{{ patch.get_nemnd_accepted_display }}
 
  <tr>
-   <td colspan="4" class="text">{{ patch.what_to_change|markdown }}
+   <td colspan="5" class="text">{{ patch.what_to_change|markdown }}
 
 </table>
