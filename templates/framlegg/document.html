@@ -3,22 +3,30 @@
 
 {% block bodyclass %}document{% endblock %}
 
+{% block extrahead %}{{ block.super }}
+	<script type="text/javascript" src="/web/syntaxhighligther/scripts/shCore.js"></script>
+	<link type="text/css" rel="stylesheet" href="/web/syntaxhighligther/styles/shCore.css"/>
+	<script type="text/javascript" src="/web/syntaxhighligther/scripts/shBrushPlain.js"></script>
+	<script type="text/javascript">
+		SyntaxHighlighter.all();
+	</script>
+{% endblock %}
+
 {% block content %}
 
 <ul class="handlingar">
 	<li><a href="#endringsframlegg">Levér endringsframlegg</a>
 </ul>
 
-<div style="background-color: yellow"><p><strong>Odin:</strong> Eg må finna ut
-kva me skal gjera her med å visa dokumenti. Det er litt dumt å visa det, av di
-me ikkje hev nummerering slik som dei dokumenti som er sendt ut.
-<p>Det kann henda eg klarar få ut noko som vert heilt likt, men hev ikkje
-prøvd. Dessutan treng me nummerering for nye dokument som kjem inn.
-<p>Elles so tenkjer eg at alle hev fengje ut dei ANDRE dokumenti, so me treng
-sikkert ikkje visa dei på netsida i det heile teke. I svo fall gjer det alt
-enklare. Då treng eg berre laga linenummer for innsendte dokument.
-</div>
-{#{ doc.text|markdown }#}
+<h1>{{ doc.title }}</h1>
+
+{% if not doc.text %}
+<p>Dette dokumentet, med linenummer, skal du kunna finna i sakpapirene dine.</p>
+{% else %}
+<pre class="brush: plain;">
+{{ doc.text }}
+</pre>
+{% endif %}
 
 <h2 id="endringsframlegg">Kom med eit framlegg til endring</h2>
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
