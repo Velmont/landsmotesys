@@ -81,7 +81,12 @@ class Document(models.Model):
 class DocumentForm(ModelForm):
     class Meta:
         model = Document
-        fields = ('category', 'title', 'text', 'backed_by')
+        fields = ('title', 'text', 'backed_by')
+
+    def save(self, *args, **kwargs):
+        """Set category hardkoda til primary key 1 (fråsegner/uttalelser)"""
+        self.instance.category = Category.objects.get(pk=1);
+        return super(DocumentForm, self).save(*args, **kwargs)
 
 
 class Patch(models.Model):
