@@ -47,6 +47,7 @@ class DocumentAdmin(admin.ModelAdmin):
     exclude = ('created_by',)
     list_filter = ('category',)
     list_editable = ('nemnd_accepted',)
+    save_on_top = True
     inlines = [PatchInline,]
 
     class Media:
