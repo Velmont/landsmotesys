@@ -75,7 +75,7 @@ class DocumentForm(ModelForm):
 class Patch(models.Model):
     document = models.ForeignKey(Document, verbose_name="dokument")
     backed_by = models.CharField("fremja av", max_length=200, help_text="""
-<p class="forklaring">Namnet ditt (og eventuelt andre)""")
+<p class="forklaring">Namnet ditt (og eventuelt andre), separert med komma""")
     line_no = models.CharField("linenr (eller post)", max_length=20, help_text="""
 <p class="forklaring">Start med eit tal, t.d. <code>123-125,145</code></p>""")
 
