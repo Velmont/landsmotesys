@@ -45,8 +45,8 @@ class Document(models.Model):
                                 default="W")
 
     # Kinda-meta
-    created = models.DateTimeField(default=datetime.date.today)
-    created_by = models.CharField(max_length=200, default="Systemet")
+    created = models.DateTimeField(default=datetime.datetime.now)
+    created_by = models.CharField(max_length=200, blank=True, default="Systemet")
 
     class Meta:
         ordering = ('category', '-created')
@@ -106,7 +106,7 @@ til:
 
     # Kinda-meta
     created = models.DateTimeField(default=datetime.datetime.now)
-    created_by = models.CharField(max_length=200, default="Systemet")
+    created_by = models.CharField(max_length=200, blank=True, default="Systemet")
 
     def __unicode__(self):
         return "Patch %d" % self.pk
