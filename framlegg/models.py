@@ -76,7 +76,7 @@ class Document(models.Model):
 class DocumentForm(ModelForm):
     class Meta:
         model = Document
-        fields = ('category', 'title', 'text', 'created_by')
+        fields = ('category', 'title', 'text', 'backed_by')
 
 
 class Patch(models.Model):
