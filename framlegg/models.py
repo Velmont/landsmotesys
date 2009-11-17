@@ -8,6 +8,11 @@ import textwrap
 class Category(models.Model):
     name = models.CharField(max_length=200)
 
+    class Meta:
+        ordering = ('name')
+        verbose_name = "Sak"
+        verbose_name_plural = "Saker"
+
     @models.permalink
     def get_absolute_url(self):
         return ('framlegg.views.cat_view', [str(self.pk)])
@@ -51,6 +56,8 @@ class Document(models.Model):
 
     class Meta:
         ordering = ('category', '-created')
+        verbose_name = "Dokument"
+        verbose_name_plural = "Dokument"
 
     def num_patches(self):
         return self.patch_set.all().count()
@@ -111,8 +118,12 @@ til:
     created = models.DateTimeField("oppretta", default=datetime.datetime.now)
     created_by = models.CharField("oppretta av", max_length=200, blank=True)
 
+    class Meta:
+        verbose_name = "Framlegg"
+        verbose_name_plural = "Framlegg"
+
     def __unicode__(self):
-        return "Patch %d" % self.pk
+        return "Framlegg %d" % self.pk
 
 class PatchForm(ModelForm):
     class Meta:
