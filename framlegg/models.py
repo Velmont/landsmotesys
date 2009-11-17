@@ -61,6 +61,11 @@ class Document(models.Model):
 
     def num_patches(self):
         return self.patch_set.all().count()
+    num_patches.short_description = "framlegg"
+
+    def num_undef_patches(self):
+        return self.patch_set.filter(nemnd_accepted='W').count()
+    num_undef_patches.short_description = "nye"
 
     def __unicode__(self):
         return self.title
