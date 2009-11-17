@@ -30,23 +30,24 @@ VOTE_CHOICES = (
 )
 
 class Document(models.Model):
-    title = models.CharField("Tittel", max_length=200)
-    text = models.TextField("Dokumenttekst", null=True, blank=True)
-    category = models.ForeignKey(Category, verbose_name="Sak")
-    backed_by = models.CharField("Fremma av", max_length=200)
+    title = models.CharField("tittel", max_length=200)
+    text = models.TextField("tekst", null=True, blank=True)
+    category = models.ForeignKey(Category, verbose_name="sak")
+    backed_by = models.CharField("fremja av", max_length=200)
 
     # Voting
-    nemnd_accepted = models.CharField(max_length=2,
+    nemnd_accepted = models.CharField("innstilling", max_length=2,
                                       choices=VOTE_NEMND_CHOICES,
                                       default="W")
-    nemnd_desc = models.TextField(null=True, blank=True)
-    accepted = models.CharField(max_length=2,
+    nemnd_desc = models.TextField("nemnd kvifor?", blank=True, null=True,
+                                help_text="""Fritekst til spesielle kommentarar""")
+    accepted = models.CharField("vedtak", max_length=2,
                                 choices=VOTE_CHOICES,
                                 default="W")
 
     # Kinda-meta
-    created = models.DateTimeField(default=datetime.datetime.now)
-    created_by = models.CharField(max_length=200, blank=True, default="Systemet")
+    created = models.DateTimeField("opretta", default=datetime.datetime.now)
+    created_by = models.CharField("oppretta av", max_length=200, blank=True)
 
     class Meta:
         ordering = ('category', '-created')
@@ -72,13 +73,13 @@ class DocumentForm(ModelForm):
 
 
 class Patch(models.Model):
-    document = models.ForeignKey(Document)
-    backed_by = models.CharField("Fremma av", max_length=200, help_text="""
+    document = models.ForeignKey(Document, verbose_name="dokument")
+    backed_by = models.CharField("fremja av", max_length=200, help_text="""
 <p class="forklaring">Namnet ditt (og eventuelt andre)""")
-    line_no = models.CharField("Linenummer", max_length=20, help_text="""
+    line_no = models.CharField("linenr (eller post)", max_length=20, help_text="""
 <p class="forklaring">Start med eit tal, t.d. <code>123-125,145</code></p>""")
 
-    what_to_change = models.TextField("Endringsframlegg", help_text="""<div class="forklaring">
+    what_to_change = models.TextField("endring", help_text="""<div class="forklaring">
 <p>Dersom det er ei endring du kjem med, skriv det på følgjande måte:</p>
          <pre>Endra line 123-125 frå:
 
@@ -86,27 +87,28 @@ class Patch(models.Model):
 
 til:
 
-> Nei til EU skal i dei komande vekene gjera heilt ekstremt mykje bra.</pre></div>"""
-)
+> Nei til EU skal i dei komande vekene gjera heilt ekstremt mykje bra.</pre></div>""")
     diff = models.TextField(blank=True, null=True)
 
     # Info
-    reason = models.TextField("Grunngjeving", blank=True, null=True, help_text="""
+    reason = models.TextField("grunngjeving", blank=True, null=True, help_text="""
 <p class="forklaring">Friviljugt felt</p>""")
 
     # Voting
-    nemnd_accepted = models.CharField(max_length=2,
+    nemnd_accepted = models.CharField("innstilling", max_length=2,
         choices=VOTE_NEMND_CHOICES,
         default="W")
-    accepted = models.CharField(max_length=2,
+    accepted = models.CharField("vedtak", max_length=2,
        choices=VOTE_CHOICES,
        default="W")
-    nemnd_desc = models.TextField(blank=True, null=True)
-    nemnd_superseeded_by = models.ForeignKey('Patch', null=True, blank=True)
+    nemnd_desc = models.TextField("nemnd kvifor?", blank=True, null=True,
+                                help_text="""Fritekst til spesielle kommentarar""")
+    nemnd_superseeded_by = models.ForeignKey('Patch', verbose_name="fyretrekt framlegg",
+                                            null=True, blank=True)
 
     # Kinda-meta
-    created = models.DateTimeField(default=datetime.datetime.now)
-    created_by = models.CharField(max_length=200, blank=True, default="Systemet")
+    created = models.DateTimeField("oppretta", default=datetime.datetime.now)
+    created_by = models.CharField("oppretta av", max_length=200, blank=True)
 
     def __unicode__(self):
         return "Patch %d" % self.pk

@@ -1,1 +1,3 @@
 .forklaring { display: none; }
+.aligned .reason .inline + textarea, .nemnd_desc textarea, #id_nemnd_desc, #id_reason { width: 250px; height: 80px; }
+.inline-related { border-bottom: 4px solid #417690; }

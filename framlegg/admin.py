@@ -18,23 +18,33 @@ class PatchAdmin(admin.ModelAdmin):
                         'nemnd_desc',
                         'nemnd_superseeded_by',)
         }),
-        ('Avansert', {
-            'classes': ('collapse',),
-            'fields': ('created_by',
-                       'diff',)
-        })
     )
 
     class Media:
         css = {"all": ("/web/admin.css",)}
 
+    def save_model(self, request, obj, form, change):
+        obj.created_by = request.user
+        obj.save()
+
+
 class PatchInline(admin.StackedInline):
     model = Patch
-    fields = ('backed_by', 'line_no', 'what_to_change', 'nemnd_accepted', 'nemnd_desc', 'nemnd_superseeded_by')
-    extra = 1
+    #fields = ('backed_by', 'line_no', 'what_to_change', 'nemnd_accepted', 'nemnd_desc', 'nemnd_superseeded_by')
+    fieldsets = (
+        (None, {
+            'fields': (('backed_by', 'line_no'),
+                        ('what_to_change', 'reason'),
+                        ('nemnd_accepted', 'nemnd_superseeded_by',),
+                        'nemnd_desc',)
+        }),
+    )
+    extra = 10
+
 
 class DocumentAdmin(admin.ModelAdmin):
     list_display = ('__unicode__', 'category', 'num_patches', 'nemnd_accepted')
+    exclude = ('created_by',)
     list_filter = ('category',)
     list_editable = ('nemnd_accepted',)
     inlines = [PatchInline,]
@@ -42,6 +52,9 @@ class DocumentAdmin(admin.ModelAdmin):
     class Media:
         css = {"all": ("/web/admin.css",)}
 
+    def save_model(self, request, obj, form, change):
+        obj.created_by = request.user
+        obj.save()
 
 
 admin.site.register(Document, DocumentAdmin)
