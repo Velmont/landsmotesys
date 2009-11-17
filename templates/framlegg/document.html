@@ -14,11 +14,11 @@
 
 {% block content %}
 
+<h1>{{ doc.title }}</h1>
+
 <ul class="handlingar">
 	<li><a href="#endringsframlegg">Levér endringsframlegg</a>
 </ul>
-
-<h1>{{ doc.title }}</h1>
 
 {% if not doc.text %}
 <p>Dette dokumentet, med linenummer, skal du kunna finna i sakpapirene dine.</p>
@@ -33,9 +33,16 @@
 
 <form action="{{ doc.get_absolute_url }}#endringsframlegg" method="post" class="form">
 {#% csrf_token %#}
+{% if doc.text %}
+    <ul class="handlingar">
+        <li><a href="#content">Opp att til sjølve teksten</a>
+    </ul>
+{% endif %}
     <p>Ikkje skriv inn meir enn <em>ei logisk endring</em> for kvar gong, slik at det vert
     enkelt å stemma for forslaga kvar for seg.</p>
 <ul class="realform">
+    <li>Sak og dokument:<br>
+    <strong>{{ doc.category }}: {{ doc.title }}</strong></li>
 {{ form.as_ul }}
 </ul>
 

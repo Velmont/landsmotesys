@@ -4,11 +4,7 @@
 {% block bodyclass %}heim{% endblock %}
 
 {% block content %}
-<p>Dette er ein enkel oversikt over alle dokument. Trykk på dokumentet so får
-du høve til å levera endringsframlegg.
-<p>Dersom du ikkje vert lett forvirra, so kan du bruka den meir
- <a href="{% url framlegg.views.index %}">avanserte lista</a> som har meir
-informasjon og fleire val.
+<p>Trykk på dokumentet so får du høve til å levera endringsframlegg.
 
 {% for c in object_list %}
     <h3>{{ c.name }}</h3>
@@ -22,7 +18,7 @@ informasjon og fleire val.
     <tbody>
     {% for doc in c.document_set.all %}
       <tr>
-        <td><a href="{{ doc.get_absolute_url }}">{{ doc.title|truncatesmart:37 }}</a>
+        <td><a href="{{ doc.get_absolute_url }}#endringsframlegg">{{ doc.title|truncatesmart:37 }}</a>
         <td>{{ doc.backed_by|truncatesmart:45 }}
         <td>{{ doc.num_patches }}
         <td>{{ doc.created|date:"Y-m-d" }}
