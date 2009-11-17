@@ -9,7 +9,7 @@ class Category(models.Model):
     name = models.CharField(max_length=200)
 
     class Meta:
-        ordering = ('name')
+        ordering = ('name',)
         verbose_name = "Sak"
         verbose_name_plural = "Saker"
 
