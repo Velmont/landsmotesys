@@ -18,8 +18,12 @@
       <h3>Ingen innkomne endringsframlegg</h3>
     {% endif %}
   {% endwith %}
+
   <div class="iheilskap">
-    <p>Dokumentet i heilskap: {{ doc.get_nemnd_accepted_display }}
+    <p>
+    {% if not doc_as_cat or forloop.last %}
+      Dokumentet i heilskap: {{ doc.get_nemnd_accepted_display }}
+    {% endif %}
   </div>
 {% endfor %}
 

@@ -38,6 +38,7 @@ def document(request, doc_id):
 def cat_view(request, cat_id):
     cat = get_object_or_404(Category, pk=cat_id)
     docs = cat.document_set.all().order_by('created')
+    doc_as_cat = request.GET.get('doc_as_cat', '')
 
     for doc in docs:
         doc.patches = sorted(doc.patch_set.all(),
@@ -45,4 +46,4 @@ def cat_view(request, cat_id):
                          key=operator.attrgetter('line_no'))
 
     return render_to_response('framlegg/cat_view.html',
-                              {'cat': cat, 'docs': docs})
+                              {'cat': cat, 'docs': docs, 'doc_as_cat': doc_as_cat})
