@@ -6,6 +6,7 @@ class PatchAdmin(admin.ModelAdmin):
     list_display = ('__unicode__', 'document', 'backed_by', 'line_no', 'nemnd_accepted')
     list_filter = ('document', 'backed_by', 'nemnd_accepted',)
     list_editable = ('nemnd_accepted',)
+    raw_id_fields = ('document', 'nemnd_superseeding',)
     save_on_top = True
     search_fields = ('what_to_change', 'backed_by')
     fieldsets = (
