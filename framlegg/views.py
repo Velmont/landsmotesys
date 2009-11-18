@@ -27,7 +27,7 @@ def document(request, doc_id):
     else:
         form = PatchForm()
 
-    doc.patches = sorted(doc.patch_set.all(),
+    doc.patches = sorted(doc.patch_set.filter(nemnd_superseeding__isnull=True),
                      cmp_str_as_int,
                      key=operator.attrgetter('line_no'))
 
@@ -41,7 +41,7 @@ def cat_view(request, cat_id):
     doc_as_cat = request.GET.get('doc_as_cat', '')
 
     for doc in docs:
-        doc.patches = sorted(doc.patch_set.all(),
+        doc.patches = sorted(doc.patch_set.filter(nemnd_superseeding__isnull=True),
                          cmp_str_as_int,
                          key=operator.attrgetter('line_no'))
 

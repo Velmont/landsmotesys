@@ -46,13 +46,13 @@ h4 small { font-weight: normal; }
 .nav2 { font-size: 0.8em; padding: 0 0 0 40px; margin-top: 0; }
 p.visframlegg{ margin: 0 0 0 5px; font-size: 0.8em; display: inline; }
 
-table { width: 100%; border-collapse: collapse; border: 1px hidden; font-size: 0.9em; }
+table { width: 100%; border-collapse: collapse; border: 1px hidden; font-size: 10.5pt; }
 td, th { border-left: 1px solid gray; text-align: left; padding: 0 5px; }
 th { font-size: 0.8em; border-bottom: 1px solid #ccc; border-left: 1px solid #ccc; background-color: #eee; }
 
-table.framlegg { margin-bottom: 60px; }
+table.framlegg { margin: 30px 0; border-left: 1px solid gray; }
 /* Framleggsvisning i dokumentet */
-.framlegg td { background-color: #eee; }
+.info td { background-color: #eee; }
 .framlegg th { border-bottom: none; border-color: gray; }
 td.text { border: 1px solid gray; background-color: transparent; }
 th.id, td.id { background-color: transparent; text-align: center; }
@@ -61,6 +61,8 @@ td.id { font-size: 1.4em; font-weight: bold; }
 .framlegg .nemnddesc { background: url('bilete/eee-to-fff.png') repeat-x #fff; }
 .framlegg .nemnddesc strong { font-size: 0.8em; }
 .framlegg p.head { margin: 5px 0 0; }
+
+.underliggjande { padding: 0 0 0 40px; }
 
 #content .syntaxhighlighter .lines .alt1 { background-color: #f5f5f5 !important; }
 

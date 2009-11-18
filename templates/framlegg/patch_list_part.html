@@ -6,7 +6,7 @@
    <th class="by">Forslagsstillar
    <th class="dato">Levert
    <th class="innst">Innstilling
- <tr>
+ <tr class="info">
    <td class="id">{{ patch.pk }}
    <td>{{ patch.line_no }}
    <td>{{ patch.backed_by }}
@@ -22,5 +22,15 @@
       <p class="head"><strong>Nemndskommentar:</strong>
       {{ patch.nemnd_desc|markdown }}
   {% endif %}
+
+{% if patch.nemnd_superseeded_by.all %}
+  <tr>
+    <td colspan="5" class="underliggjande">
+    {% with "framlegg/patch_list_part.html" as filename %}
+    {% for patch in patch.nemnd_superseeded_by.all %}
+        {% include filename %}
+    {% endfor %}
+    {% endwith %}
+{% endif %}
 
 </table>
