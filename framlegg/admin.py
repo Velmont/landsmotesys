@@ -16,7 +16,7 @@ class PatchAdmin(admin.ModelAdmin):
         ('Nemnding', {
             'fields': ('nemnd_accepted',
                         'nemnd_desc',
-                        'nemnd_superseeded_by',)
+                        'nemnd_superseeding',)
         }),
     )
 
@@ -35,7 +35,7 @@ class PatchInline(admin.StackedInline):
         (None, {
             'fields': (('backed_by', 'line_no'),
                         ('what_to_change', 'reason'),
-                        ('nemnd_accepted', 'nemnd_superseeded_by',),
+                        ('nemnd_accepted', 'nemnd_superseeding',),
                         'nemnd_desc',)
         }),
     )

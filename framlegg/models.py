@@ -121,7 +121,8 @@ til:
        default="W")
     nemnd_desc = models.TextField("nemnd kvifor?", blank=True, null=True,
                                 help_text="""Fritekst til spesielle kommentarar""")
-    nemnd_superseeded_by = models.ForeignKey('Patch', verbose_name="fyretrekt framlegg",
+    nemnd_superseeding = models.ForeignKey('self', verbose_name='fyretrekt framfor',
+                                            related_name='nemnd_superseeded_by',
                                             null=True, blank=True)
 
     # Kinda-meta
