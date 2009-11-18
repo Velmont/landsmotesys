@@ -55,7 +55,7 @@ class Document(models.Model):
     created_by = models.CharField("oppretta av", max_length=200, blank=True)
 
     class Meta:
-        ordering = ('category', '-created')
+        ordering = ('title',)
         verbose_name = "Dokument"
         verbose_name_plural = "Dokument"
 
