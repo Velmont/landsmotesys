@@ -122,6 +122,8 @@ til:
     nemnd_desc = models.TextField("nemnd kvifor?", blank=True, null=True,
                                 help_text="""Fritekst til spesielle kommentarar""")
     nemnd_superseeding = models.ForeignKey('self', verbose_name='fyretrekt framfor',
+                                            help_text="""Framlegget du veljer her vert plassert
+                                              oppfor og som «forelder» til dette framlegget""",
                                             related_name='nemnd_superseeded_by',
                                             null=True, blank=True)
 
