@@ -18,7 +18,7 @@
     <tbody>
     {% for doc in c.document_set.all %}
       <tr>
-        <td><a href="{{ doc.get_absolute_url }}#endringsframlegg">{{ doc.title|truncatesmart:37 }}</a>
+        <td><a href="{{ doc.get_absolute_url }}#endringsframlegg">{{ doc.title|truncatesmart:32 }}</a>
         <td>{{ doc.backed_by|truncatesmart:45 }}
         <td>{{ doc.num_patches }}
         <td>{{ doc.created|date:"Y-m-d" }}
