@@ -16,4 +16,11 @@
  <tr>
    <td colspan="5" class="text">{{ patch.what_to_change|markdown }}
 
+  {% if patch.nemnd_desc %}
+  <tr>
+    <td colspan="5" class="nemnddesc">
+      <p class="head"><strong>Nemndskommentar:</strong>
+      {{ patch.nemnd_desc|markdown }}
+  {% endif %}
+
 </table>
