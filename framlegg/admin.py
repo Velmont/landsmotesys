@@ -25,7 +25,7 @@ class PatchAdmin(admin.ModelAdmin):
         css = {"all": ("/web/admin.css",)}
 
     def save_model(self, request, obj, form, change):
-        obj.created_by = request.user
+        obj.created_by = unicode(request.user)
         obj.save()
 
 
@@ -55,7 +55,7 @@ class DocumentAdmin(admin.ModelAdmin):
         css = {"all": ("/web/admin.css",)}
 
     def save_model(self, request, obj, form, change):
-        obj.created_by = request.user
+        obj.created_by = unicode(request.user)
         obj.save()
 
 
