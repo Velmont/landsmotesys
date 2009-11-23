@@ -71,7 +71,9 @@ class Document(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
-        self.text = textwrap.fill(self.text, width=78, replace_whitespace=False)
+        # Wrap dersom det er fyrste gong me lagrar dokumentet
+        if not self.id:
+            self.text = textwrap.fill(self.text, width=78, replace_whitespace=False)
         super(Document, self).save(*args, **kwargs)
 
     @models.permalink
