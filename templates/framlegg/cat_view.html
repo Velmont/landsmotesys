@@ -6,6 +6,14 @@
 
 <h1>{{ cat.name }}</h1>
 
+<ul class="nav">
+	{% if doc_as_cat %}
+	<li><a href="?doc_as_cat=">Vis dokument som dokument</a>
+	{% else %}
+	<li><a href="?doc_as_cat=True">Vis dokument som kategoriar</a>
+	{% endif %}
+</ul>
+
 {% for doc in docs %}
   <h2>{{ doc.title }}</h2>
   {% with doc.patches as patches %}
