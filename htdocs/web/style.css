@@ -58,8 +58,8 @@ td.text { border: 1px solid gray; background-color: transparent; }
 th.id, td.id { background-color: transparent; text-align: center; }
 th.id { color: #333; font-weight: normal; font-size: 0.8em; }
 td.id { font-size: 1.4em; font-weight: bold; }
-.framlegg .nemnddesc { background: url('bilete/eee-to-fff.png') repeat-x #fff; }
-.framlegg .nemnddesc strong { font-size: 0.8em; }
+.framlegg .nemnddesc, .framlegg .reason { background: url('bilete/eee-to-fff.png') repeat-x #fff; border-top: 1px solid gray; }
+.framlegg .head strong { font-size: 0.8em; }
 .framlegg p.head { margin: 5px 0 0; }
 
 .underliggjande { padding: 0 0 0 40px; }
