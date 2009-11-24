@@ -58,7 +58,10 @@ class DocumentAdmin(admin.ModelAdmin):
         obj.created_by = unicode(request.user)
         obj.save()
 
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('__unicode__', 'time_limit')
+    date_hierarchy = 'time_limit'
 
 admin.site.register(Document, DocumentAdmin)
 admin.site.register(Patch, PatchAdmin)
-admin.site.register(Category)
+admin.site.register(Category, CategoryAdmin)
