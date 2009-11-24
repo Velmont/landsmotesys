@@ -1,12 +1,13 @@
 # vim: ts=4 sts=4 expandtab sw=4 fileencoding=utf8
 from django.db import models
-from django.forms import ModelForm
+from django.forms import ModelForm, ValidationError
 from django.db.models import permalink
 import datetime
 import textwrap
 
 class Category(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField("saknamn", max_length=200)
+    time_limit = models.DateTimeField("innleveringsfrist")
 
     class Meta:
         ordering = ('name',)
@@ -85,10 +86,14 @@ class DocumentForm(ModelForm):
         model = Document
         fields = ('title', 'text', 'backed_by')
 
-    def save(self, *args, **kwargs):
+    def clean(self):
         """Set category hardkoda til primary key 1 (fråsegner/uttalelser)"""
-        self.instance.category = Category.objects.get(pk=1);
-        return super(DocumentForm, self).save(*args, **kwargs)
+        cat = Category.objects.get(pk=1)
+        self.instance.category = cat
+        if cat.time_limit < datetime.datetime.now():
+            raise ValidationError("Tidsfristen er ute!")
+
+        return self.cleaned_data
 
 
 class Patch(models.Model):
@@ -144,3 +149,10 @@ class PatchForm(ModelForm):
     class Meta:
         model = Patch
         fields = ('backed_by', 'line_no', 'what_to_change', 'reason')
+
+    def clean(self):
+        doc = self.instance.document
+        if doc.category.time_limit < datetime.datetime.now():
+            raise ValidationError("Tidsfristen er ute!")
+        return self.cleaned_data
+
