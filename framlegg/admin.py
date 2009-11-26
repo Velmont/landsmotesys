@@ -8,7 +8,7 @@ class PatchAdmin(admin.ModelAdmin):
     list_editable = ('nemnd_accepted',)
     raw_id_fields = ('document', 'nemnd_superseeding',)
     save_on_top = True
-    search_fields = ('what_to_change', 'backed_by')
+    search_fields = ('=id','what_to_change', 'backed_by',)
     fieldsets = (
         (None, {
             'fields': (('document', 'backed_by', 'line_no'),
@@ -49,6 +49,7 @@ class DocumentAdmin(admin.ModelAdmin):
     list_filter = ('category',)
     list_editable = ('nemnd_accepted',)
     save_on_top = True
+    search_fields = ('=id', 'title',)
     inlines = [PatchInline,]
 
     class Media:
