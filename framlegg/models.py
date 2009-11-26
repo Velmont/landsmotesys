@@ -143,7 +143,9 @@ til:
         verbose_name_plural = "Framlegg"
 
     def __unicode__(self):
-        return "Framlegg %d" % self.pk
+        if self.id:
+            return "Framlegg %d" % self.id
+        return "Framlegg <ukjend>"
 
 class PatchForm(ModelForm):
     class Meta:
