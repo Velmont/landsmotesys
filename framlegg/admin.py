@@ -44,7 +44,7 @@ class PatchInline(admin.StackedInline):
 
 
 class DocumentAdmin(admin.ModelAdmin):
-    list_display = ('__unicode__', 'category', 'num_patches', 'num_undef_patches', 'nemnd_accepted')
+    list_display = ('__unicode__', 'category', 'num_patches', 'num_undef_patches_color', 'nemnd_accepted')
     exclude = ('created_by',)
     list_filter = ('category',)
     list_editable = ('nemnd_accepted',)

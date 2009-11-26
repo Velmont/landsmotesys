@@ -68,6 +68,15 @@ class Document(models.Model):
         return self.patch_set.filter(nemnd_accepted='W').count()
     num_undef_patches.short_description = "nye"
 
+    def num_undef_patches_color(self):
+        c = self.num_undef_patches()
+        if c == 0:
+            return "-"
+
+        return "<strong style='color:red'>%d</strong>" % c
+    num_undef_patches_color.short_description = "nye"
+    num_undef_patches_color.allow_tags = True
+
     def __unicode__(self):
         return self.title
 
