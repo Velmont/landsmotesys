@@ -1,0 +1,51 @@
+LANDSMØTESYSTEM, FRAMLEGGSINNSKRIVING
+
+Det er tenkt at systemet i framtida skal kunna gjera meir enn berre
+framleggsinnskriving slik det gjer no.
+
+Prosjektet er distribuert under AGPL 3.0, i veldig korte trekk vil dette seia at
+du er fri til å gjera endringar i og distribuera programmet. Men lisensen gjeld
+òg all kode du skriv til det, og han gjeld òg for alle som fær programmet
+gjennom deg.
+
+Les fila AGPL.txt for den ekte lisensen :-)
+
+
+INNSTALLERING
+
+Eg gjeng ut i frå at du brukar Ubuntu Linux Karmic Koala (9.10).
+
+1. Installer Django:
+       aptitude install python-django
+
+   (NB: Du kan òg bruka easy_install django, gjer det viss du hev ein annan
+    distro eller ein eldre Ubuntu-versjon enn Karmic!)
+
+2. Lag databasemappa i denne mappa:
+        mkdir db
+
+3. Opprett databasen:
+        ./manage.py syncdb
+
+   Du må velja brukarnamn/passord her.
+
+4. Start Django sin utviklingsserver:
+        ./manage.py runserver
+
+5. Opna ein vevmysar og gå til http://localhost:8000/admin/, logg inn med
+   brukar/pass du uppretta i steg 3.
+
+6. Trykk på «Legg til» (elder Add) på «Sak».
+
+7. Skriv inn «Uttalelser» (den må vera der for at «legg inn ny uttalelse» i
+vevgrensesnittet skal fungera).
+
+
+No skal systemet vera installert. Brukarsida finn du på:
+  http://localhost:8000/
+
+Administrasjonssystemet (som kannhenda vert mest brukt) finn du på:
+  http://localhost:8000/admin/
+
+
+Odin Hørthe Omdal, http://velmont.no, <odin.omdal@gmail.com>
