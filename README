@@ -13,24 +13,22 @@ Les fila AGPL.txt for den ekte lisensen :-)
 
 INNSTALLERING
 
-Eg gjeng ut i frå at du brukar Ubuntu Linux Karmic Koala (9.10).
-
-1. Installer Django:
-       aptitude install python-django
-
-   (NB: Du kan òg bruka easy_install django, gjer det viss du hev ein annan
-    distro eller ein eldre Ubuntu-versjon enn Karmic!)
+1. Lag virtuelt Python-miljø:
+        cd landsmotesys
+        virtualenv env
+        . env/bin/activate
+        pip install -r requirements.txt
 
 2. Lag databasemappa i denne mappa:
         mkdir db
 
 3. Opprett databasen:
-        ./manage.py syncdb
+        python manage.py syncdb
 
    Du må velja brukarnamn/passord her.
 
 4. Start Django sin utviklingsserver:
-        ./manage.py runserver
+        python manage.py runserver
 
 5. Opna ein vevmysar og gå til http://localhost:8000/admin/, logg inn med
    brukar/pass du uppretta i steg 3.
